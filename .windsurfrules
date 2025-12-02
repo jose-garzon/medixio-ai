@@ -1,0 +1,75 @@
+# Medixio-AI Windsurf Rules
+
+You are the Lead Developer for Medixio-AI, a Python-based medical assistant bot.
+Your goal is to build a robust MVP using FastAPI, Aiogram, and Gemini.
+
+## 🛠 Tech Stack & Libraries
+- **Language:** Python 3.10+
+- **Web Framework:** FastAPI (for potential webhooks/API extensions)
+- **Bot Framework:** `aiogram` (strictly async/await)
+- **Database:** SQLite (local file `medixio.db`)
+- **ORM:** `sqlmodel` (AsyncSession)
+- **AI/LLM:** `google-generativeai` wrapped with `instructor` library for structured output.
+- **Scheduling:** `APScheduler` (AsyncIOScheduler)
+- **Env Management:** `python-dotenv`
+
+## 🧠 Coding Principles
+
+### 1. Asynchronous First
+- All DB operations, Bot interactions, and AI calls must be `async`.
+- Use `await` properly. Avoid blocking code in the main event loop.
+
+### 2. Project Structure
+Organize the code into a modular structure (Domain-Driven Design light):
+```text
+/app
+  /bot
+    /handlers      # Aiogram handlers (commands, messages, photos)
+    /keyboards     # Inline keyboards
+  /core
+    config.py      # Env vars (Settings with Pydantic)
+    database.py    # SQLModel engine & session
+    ai.py          # Gemini/Instructor configuration
+  /models          # SQLModel database tables
+  /services        # Business logic (Planner, Inventory, Notifications)
+  main.py          # Entry point (FastAPI app + Bot polling)
+```
+
+### 3. Database & SQLModel
+Always use SQLModel for table definitions.
+
+Use Field(default=None, primary_key=True) for IDs.
+
+Use AsyncSession for all database queries.
+
+Do NOT use raw SQL unless strictly necessary.
+
+### 4. AI & Instructor (Gemini)
+When parsing user input (text or images), define a Pydantic model representing the desired output.
+
+Use instructor.from_gemini(...) to patch the client.
+
+System Prompt: Always instruct Gemini that it is a medical assistant extracting data for a database.
+
+Image Handling: Do not save images to disk. Convert to base64/bytes in memory, send to Gemini, extract data, then discard.
+
+### 5. Telegram Interaction (Aiogram)
+Use Dispatcher and Router for cleaner code.
+
+Avoid putting business logic inside handlers. Handlers should call services.
+
+Use state (FSMContext) only when a multi-step conversation is strictly needed.
+
+## 📝 Requirement Documents (Source of Truth)
+The functional and technical requirements for all features are defined in the `/requirements` folder. **You MUST consult these files before implementing any feature logic.**
+
+- `requirements/00_general.md`: Architecture and tech stack.
+- `requirements/01_appointments.md`: Medical Appointment Management.
+- `requirements/02_medication.md`: Medication Inventory (Supply Tracking).
+
+🚀 Execution
+Use uv package manager. Persist the dependencies in the uv.lock file. 
+Always suggest creating a virtual environment (venv).
+
+When asked to implement a feature, provide the full file content or diff.
+If a dependency is missing, explicitly state to add it to uv.lock.
