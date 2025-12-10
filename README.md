@@ -1,3 +1,20 @@
 # Medixio IA
 
-Helps people to keep track of their medical appointments.
+## Objective
+
+Medixio IA is a digital assistant designed to help individuals reliably manage their health-related schedules. The primary goal is to provide a secure and user-friendly platform for tracking medical appointments and medication regimens, thereby preventing missed appointments and ensuring adherence to treatment plans.
+
+## Core Features (Phase 1)
+
+*   **User Authentication:** Secure user registration and login.
+*   **Appointment Management:** Create, view, update, and delete medical appointments.
+*   **Medication Tracking:** Log prescribed medications, including dosage, instructions, and frequency.
+*   **Reminder System:** Generate and manage reminders for both appointments and medication intake.
+
+## Technology Stack
+
+The backend for Medixio IA is being developed with the following technologies:
+
+*   **Backend Framework:** [FastAPI](https://fastapi.tiangolo.com/)
+*   **Programming Language:** Python 3.11+
+
