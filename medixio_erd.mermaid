@@ -1,0 +1,62 @@
+erDiagram
+    USERS {
+        int user_id PK
+        string email UK
+        string hashed_password
+        string first_name
+        string last_name
+        datetime created_at
+        datetime updated_at
+    }
+
+    APPOINTMENTS {
+        int appointment_id PK
+        int user_id FK
+        string title
+        string doctor_name
+        string location
+        datetime appointment_time
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+
+    APPOINTMENT_REMINDERS {
+        int reminder_id PK
+        int appointment_id FK
+        int user_id FK
+        datetime scheduled_reminder_time
+        string status
+        datetime created_at
+    }
+
+    MEDICINES {
+        int medicine_id PK
+        int user_id FK
+        string name
+        string dosage
+        string instructions
+        date start_date
+        date end_date
+        string frequency_description
+        datetime created_at
+        datetime updated_at
+    }
+
+    MEDICATION_REMINDERS {
+        int reminder_id PK
+        int medicine_id FK
+        int user_id FK
+        datetime scheduled_intake_time
+        string status
+        datetime actual_intake_time
+        datetime created_at
+    }
+
+    USERS ||--o{ APPOINTMENTS : "has"
+    USERS ||--o{ MEDICINES : "has"
+    USERS ||--o{ MEDICATION_REMINDERS : "receives"
+    USERS ||--o{ APPOINTMENT_REMINDERS : "receives"
+
+    APPOINTMENTS ||--o{ APPOINTMENT_REMINDERS : "generates"
+    MEDICINES ||--o{ MEDICATION_REMINDERS : "generates"
