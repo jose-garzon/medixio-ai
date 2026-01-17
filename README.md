@@ -18,3 +18,15 @@ The backend for Medixio IA is being developed with the following technologies:
 *   **Backend Framework:** [FastAPI](https://fastapi.tiangolo.com/)
 *   **Programming Language:** Python 3.11+
 
+## Project Structure
+
+The project is organized into the following directories:
+
+- **`app/`**: Contains the main application logic, including the FastAPI application and core configuration.
+  - **`bot/`**: Holds the logic for the Telegram bot, including handlers for commands and messages.
+  - **`core/`**: Core components of the application, such as configuration management.
+- **`database/`**: Includes files related to the database, such as setup scripts and connection management.
+- **`requirements/`**: Contains the project requirements, separated into different files for better organization.
+- **`routes/`**: Defines the API endpoints for the different resources of the application.
+- **`services/`**: Implements the business logic for each of the API endpoints.
+
