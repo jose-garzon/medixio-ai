@@ -4,6 +4,7 @@ import sys
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from routes import user_routes, appointment_routes, appointment_reminder_routes, medicine_routes, medication_reminder_routes
 
 # Configurar logging
 logging.basicConfig(
@@ -49,6 +50,12 @@ async def lifespan(app: FastAPI):
 # Crear la aplicación FastAPI
 app = FastAPI(lifespan=lifespan)
 
+app.include_router(user_routes.router)
+app.include_router(appointment_routes.router)
+app.include_router(appointment_reminder_routes.router)
+app.include_router(medicine_routes.router)
+app.include_router(medication_reminder_routes.router)
+
 @app.get("/")
 async def read_root():
     """Ruta raíz para verificar que el servidor está funcionando"""
@@ -70,3 +77,4 @@ if __name__ == "__main__":
         reload=True,
         log_level="info"
     )
+
