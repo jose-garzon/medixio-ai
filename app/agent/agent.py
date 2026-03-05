@@ -1,28 +1,13 @@
 import time
-from typing import TypedDict
 
 from google.adk.agents import LlmAgent
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService, Session
 from google.genai import types
 
-from app.agent.prompts import AGENT_IDENTITY
 from app.modules.users.domain import UserMessenger
 
-
-class AgentConfig(TypedDict):
-    name: str
-    model: str
-    instruction: str
-    session_timeout: int
-
-
-agent_config: AgentConfig = {
-    "name": "medixio",
-    "model": "gemini-3.1-flash-lite-preview",
-    "instruction": AGENT_IDENTITY,
-    "session_timeout": 30 * 60,
-}
+from .domain import agent_config
 
 
 class Agent:
