@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "aiogram>=3.25.0",
-    "aiosqlite>=0.22.1",
-    "sqlmodel>=0.0.35",
+    "aiogram>=3.26.0",
+    "google-adk>=1.26.0",
+    "python-dotenv>=1.2.2",
 ]

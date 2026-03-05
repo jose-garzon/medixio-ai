@@ -1,19 +1,13 @@
 import asyncio
-import os
 
-from aiogram import Bot, Dispatcher
+from dotenv import load_dotenv
 
-import app.models  # noqa: F401 — ensures all models are registered before table creation
-from app.db.session import create_db
+load_dotenv()
+from .bot import start_bot
 
 
 async def main():
-    bot = Bot(token=os.environ["BOT_TOKEN"])
-    dispatcher = Dispatcher()
-
-    await create_db()
-
-    await dispatcher.start_polling(bot)
+    await start_bot()
 
 
 if __name__ == "__main__":
